@@ -12,7 +12,9 @@ using namespace std;
 
 class Dog // begin declaration of the Dog class
 {
-public:                    // begin public section
+public: 
+	
+		// begin public section
 	Dog() { // default constructor
 		dogName = "dog";  //set to generic dog name
 	}
@@ -44,10 +46,26 @@ public:                    // begin public section
 		cout << "   " << dogName << "\n" << endl;
 		return; //optional return
 	}
+		friend ostream& operator << (ostream & stream, const Dog & d);
+
+			
+
+
+
 private:                   // begin private section
 	string dogName;        // private member 
 }; //don't forget semi-colon with C++ classes!!
 
+ostream& operator << (ostream& stream, const Dog& d) { // Modified << operator to print the dog art and the name
+	stream << "  .-\"-." << endl;
+	stream << " /|6 6|\\" << endl;
+	stream << "{/(_0_)\\}" << endl;
+	stream << " _/ ^ \\_" << endl;
+	stream << "(/ /^\\ \\)-'" << endl;
+	stream << " \"\"' '\"\" " << endl;
+	stream << "   " << d.getName() << "\n" << endl;
+	return stream;
+}
 
 int main() {
 	char stopme;
@@ -63,6 +81,12 @@ int main() {
 	Dog lassiedog("Lassie"); //uses constructor
 	cout << endl;
 	lassiedog.show();
+	
+
+	// My dog, prints dog instance with overloaded operator and set name
+	Dog anotherdog;
+	anotherdog.setName("gurt");
+	cout << anotherdog;
 
 	cin >> stopme;  //holds console open in some cases
 	return 0;
